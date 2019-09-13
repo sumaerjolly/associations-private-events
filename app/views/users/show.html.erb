@@ -1,7 +1,7 @@
 <h1><%= @user.name %> Profile </h1>
 <h2>All Events</h2>
 <% @user.events.each do |event| %>
-    <ol>
+    <ul>
         <li><strong>Description:</strong> <%= event.description  %></li>
-    </ol>
+    </ul>
 <% end %>
