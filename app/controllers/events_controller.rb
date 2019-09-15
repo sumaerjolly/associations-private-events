@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
-  before_action :require_user, except: [:index, :show]
+  before_action :require_user, except: [:index]
   
   def new
-    @event = Event.new 
+    @users = User.all
+    @users = current_user.except_current_user(@users).pluck(:name)
+    @event = Event.new
   end
 
   def show
@@ -14,8 +16,11 @@ class EventsController < ApplicationController
   end
 
   def create
+    @users = User.all
+    @users = current_user.except_current_user(@users).pluck(:name)
     @event = current_user.events.build(event_params)
     if @event.save
+      create_attendees
       flash[:success] = "Event was created"
       redirect_to @event
 
@@ -26,7 +31,17 @@ class EventsController < ApplicationController
   end
 
   private
+
   def event_params
-    params.require(:event).permit(:description)
+    params.require(:event).permit(:description, :date)
   end
+
+  def create_attendees
+    params[:event][:attendees].each do |name|
+      if @user = User.find_by(name: name).attended_events
+        @user << @event
+      end
+    end
+  end
+
 end

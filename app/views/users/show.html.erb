@@ -1,7 +1,21 @@
 <h1><%= @user.name %> Profile </h1>
-<h2>All Events</h2>
-<% @user.events.each do |event| %>
+<h2>Past Events</h2>
+<% @user.events.past.each do |event| %>
     <ul>
-        <li><strong>Description:</strong> <%= event.description  %></li>
+        <li><%= event.description  %> by <%= event.creator.name %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
+    </ul>
+<% end %><br>
+<h2>Upcoming events</h2>
+<% @user.events.future.each do |event| %>
+    <ul>
+        <li><%= event.description  %> by <%= event.creator.name %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
+        <%= link_to "View Event", event_path(event) %>
+    </ul>
+<% end %><br>
+<h2>Invitations</h2>
+<% @user.invitations.each do|event| %>
+    <ul>
+        <li><%= event.attended_event.description %></li>
+        <%= link_to "View Event", event_path(event.attended_event)%>
     </ul>
 <% end %>
