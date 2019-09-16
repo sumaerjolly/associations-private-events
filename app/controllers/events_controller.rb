@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     if @event.save
       create_attendees
       flash[:success] = "Event was created"
-      redirect_to @event
+      redirect_to events_path
 
     else
       flash[:danger] = "There was an error in trying to create that event"

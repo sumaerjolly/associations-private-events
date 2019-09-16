@@ -10,4 +10,5 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     post login_path, params: { session: { name: user.name } }
   end
+
 end
