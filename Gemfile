@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'hirb', '~> 0.7.3'
 gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
+gem 'rubocop'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
