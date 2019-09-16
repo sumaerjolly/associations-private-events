@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   before_action :require_user, except: [:index]
-  
+
   def new
     @users = User.all
     @users = current_user.except_current_user(@users).pluck(:name)
@@ -21,11 +23,11 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     if @event.save
       create_attendees
-      flash[:success] = "Event was created"
+      flash[:success] = 'Event was created'
       redirect_to events_path
 
     else
-      flash[:danger] = "There was an error in trying to create that event"
+      flash[:danger] = 'There was an error in trying to create that event'
       render 'new'
     end
   end
@@ -38,10 +40,7 @@ class EventsController < ApplicationController
 
   def create_attendees
     params[:event][:attendees].each do |name|
-      if @user = User.find_by(name: name).attended_events
-        @user << @event
-      end
+      @user << @event if @user = User.find_by(name: name).attended_events
     end
   end
-
 end

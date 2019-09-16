@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
@@ -10,5 +12,4 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     post login_path, params: { session: { name: user.name } }
   end
-
 end

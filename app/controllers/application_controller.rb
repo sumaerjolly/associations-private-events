@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
@@ -10,9 +12,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
-    flash[:danger] = "You must be logged in to perform this action"
-    redirect_to login_path 
-    end 
+    unless logged_in?
+      flash[:danger] = 'You must be logged in to perform this action'
+      redirect_to login_path
+    end
   end
 end
