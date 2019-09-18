@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def except_current_user(users)
     users.reject { |user| user.id == id }
   end
+
+  def upcoming_events
+    self.events.where("date > ?", Time.current)
+  end
 end
