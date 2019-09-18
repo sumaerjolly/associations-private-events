@@ -1,8 +1,8 @@
-<h1><%= @user.name %> Profile </h1>
+<h1><%= @user.username %> Profile </h1>
 <h2>Past Events</h2>
 <% @user.events.past.each do |event| %>
     <ul>
-        <li><%= event.description  %> by <%= event.creator.name %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
+        <li><%= event.description  %> by <%= event.creator.username %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
          <%= link_to "View Event", event_path(event) %>
     </ul>
 <% end %><br>
@@ -10,7 +10,7 @@
 <h2>Upcoming events</h2>
 <% @user.events.future.each do |event| %>
     <ul>
-        <li><%= event.description  %> by <%= event.creator.name %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
+        <li><%= event.description  %> by <%= event.creator.username %> on <%= event.date.to_formatted_s(:long_ordinal) %></li>
         <%= link_to "View Event", event_path(event) %>
     </ul>
 <% end %><br>

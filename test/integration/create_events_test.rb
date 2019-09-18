@@ -4,7 +4,7 @@ require 'test_helper'
 
 class CreateEventsTest < ActionDispatch::IntegrationTest
   def setup
-    @user = User.create(name: 'jolly')
+    @user = User.create(username: 'jolly')
     @event = Event.create(description: 'Testing', date: '2019-09-26 00:00:00', creator: @user)
   end
 

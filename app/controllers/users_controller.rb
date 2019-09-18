@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Welcome to private events #{@user.name}"
+      flash[:success] = "Welcome to private events #{@user.username}"
       redirect_to user_path(@user)
     else
       flash.now[:danger] = 'Account creation failed'
@@ -24,6 +24,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:username)
   end
 end

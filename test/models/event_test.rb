@@ -4,7 +4,7 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   def setup
-    @user = @user = User.create(name: 'jolly')
+    @user = @user = User.create(username: 'jolly')
     @event = Event.new(description: 'Testing', date: '2019-09-26 00:00:00', creator: @user)
   end
 

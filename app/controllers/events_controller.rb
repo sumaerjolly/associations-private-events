@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   before_action :require_user, except: [:index]
-  before_action :get_users, only: [:new, :create]
+  before_action :all_users, only: %i[new create]
 
   def new
     @event = Event.new
@@ -19,9 +19,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      if params[:event][:attendees]
-        create_attendees
-      end
+      create_attendees if params[:event][:attendees]
       flash[:success] = 'Event was created'
       redirect_to events_path
 
@@ -38,13 +36,13 @@ class EventsController < ApplicationController
   end
 
   def create_attendees
-    params[:event][:attendees].each do |name|
-      @user << @event if (@user = User.find_by(name: name).attended_events)
+    params[:event][:attendees].each do |username|
+      @user << @event if (@user = User.find_by(username: username).attended_events)
     end
   end
 
-  def get_users
+  def all_users
     @users = User.all
-    @users = current_user.except_current_user(@users).pluck(:name)
+    @users = current_user.except_current_user(@users).pluck(:username)
   end
 end

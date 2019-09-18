@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = User.create(name: 'jolly')
+    @user = User.create(username: 'jolly')
   end
 
   test 'should get show' do
