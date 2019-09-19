@@ -1,0 +1,16 @@
+<h1>All Events</h1>
+<h3>Past Events</h3>
+<% @events.past.each do |event| %>
+    <ul>
+        <li><%= event.description %> on <%= event.date.to_formatted_s(:long_ordinal) %> </li>
+        <%= link_to "View Event", event_path(event) %>
+
+    </ul>
+<% end %><br>
+<h3>Upcoming events</h3>
+<% @events.future.each do |event| %>
+    <ul>
+        <li><%= event.description %> on <%= event.date.to_formatted_s(:long_ordinal) %> </li>
+        <%= link_to "View Event", event_path(event) %>
+    </ul>
+<% end %><br>

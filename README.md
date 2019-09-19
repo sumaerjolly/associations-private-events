@@ -1,24 +1,34 @@
-# README
+The project is part of a series of projects to be completed by students of [Microverse](https://www.microverse.org/ "The Global School for Remote Software Developers!").
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Private-event is a collaborative mini-project to test our understanding of associations in rails. The app implements features similar to those of [Eventbrite](https://www.eventbrite.com/), which allow users to create events and invite other users.
 
-Things you may want to cover:
+## Technologies
 
-* Ruby version
+- Ruby 2.6.0
+- Rails 5.2.3
 
-* System dependencies
+## Usage
 
-* Configuration
+> Clone the repository to your local machine
 
-* Database creation
+```sh
+$ git clone https://github.com/sumaerjolly/associations-private-events/
+```
 
-* Database initialization
+> cd into the directory
 
-* How to run the test suite
+```sh
+$ cd associations-private-events
+$ bundle install
+$ rails db:create db:migrate db:seed
+$ rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+> Using your favourite broswer, open: 
 
-* Deployment instructions
+```sh
+$ http://localhost:3000/
+```
 
-* ...
+> You can register/sign in with just your name
+> Enjoy creating events

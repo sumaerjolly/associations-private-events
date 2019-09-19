@@ -1,0 +1,13 @@
+<% if @event.attendees.include?(current_user) || @event.creator == current_user %>
+    <strong>Created by:</strong> <%= @event.creator.username %>
+    <h4>Description: <%= @event.description %></h4>
+    <h4> Date: <%=  @event.date.to_formatted_s(:long_ordinal) %>
+    <h4> People attending are: </h4>
+    <% @event.attendees.each do |attendee| %>
+        <ul>
+            <li><%= attendee.username %></li>
+        </ul>
+    <% end %>
+<% else %>
+  <h4>Sorry, you are not invited to this event!</h3>
+<% end %>
